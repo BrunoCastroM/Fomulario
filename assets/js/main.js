@@ -29,13 +29,13 @@ class ValidaFormulario {
 
         if (senha.value !== repetirSenha.value) {
             valid = false;
-            this.criaErro(senha, 'Campos senha e repetir senha precisar ser iguais.');
-            this.criaErro(repetirSenha, 'Campos senha e repetir senha precisar ser iguais.');
+            this.criaErro(senha, 'Campos senha e repetir senha precisam ser iguais.');
+            this.criaErro(repetirSenha, 'Campos senha e repetir senha precisam ser iguais.');
         }
 
         if (senha.value.length < 6 || senha.value.length > 12) {
             valid = false;
-            this.criaErro(senha, 'Senha precisa estar entre 6 e 12 caracteres.');
+            this.criaErro(senha, 'Senha precisa ter entre 6 e 12 caracteres.');
         }
 
         return valid;
@@ -49,10 +49,10 @@ class ValidaFormulario {
         }
 
         for (let campo of this.formulario.querySelectorAll('.validar')) {
-            const label = campo.previousElementSibling.innerText;
+            const placeholder  = campo.getAttribute('placeholder');
 
             if (!campo.value) {
-                this.criaErro(campo, `Campo "${label}" não pode estar em branco.`);
+                this.criaErro(campo, `Campo "${placeholder }" não pode estar em branco.`);
                 valid = false;
             }
 
@@ -63,7 +63,6 @@ class ValidaFormulario {
             if (campo.classList.contains('usuario')) {
                 if (!this.validaUsuario(campo)) valid = false;
             }
-
         }
 
         return valid;
